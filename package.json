@@ -1,0 +1,28 @@
+{
+  "name": "cadastro_de_usuarios",
+  "version": "0.0.1",
+  "description": "This is a very useful way to manage your users",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"no scripts were found or specified\" && exit 1"
+  },
+  "author": "Bruno T. M. Russo",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.2",
+    "consign": "^0.1.4",
+    "ejs": "^2.5.6",
+    "express": "4.15.3",
+    "express-session": "^1.15.3",
+    "express-validator": "^3.2.0",
+    "mongodb": "^2.2.28"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/redmamba76/cadastro_de_usuarios.git"
+  },
+  "bugs": {
+    "url": "https://github.com/redmamba76/cadastro_de_usuarios/issues"
+  },
+  "homepage": "https://github.com/redmamba76/cadastro_de_usuarios#readme"
+}
