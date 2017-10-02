@@ -1,5 +1,5 @@
 var express = require('express');
-var consign = requires('consign');
+var consign = require('consign');
 var body_parser = require('body-parser');
 var express_validator = require('express-validator');
 var express_session = require('express-session');
@@ -20,8 +20,8 @@ app.use(express_validator({
 consign()
     .include('app/router')
     .then('app/models')
-    .app('app/controllers')
-    .app('config/dbConnections.js')
+    .then('app/controllers')
+    .then('config/dbConnections.js')
     .into(app);
 
 module.exports = app;

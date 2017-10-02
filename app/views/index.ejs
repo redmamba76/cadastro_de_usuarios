@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Bem vindo</title>
+    <meta charset="utf-8">
+</head>
+
+<body>
+    <nav>
+        <section>
+            <img>
+        </section>
+        <section>
+            <ul>
+                <li>
+                    <form method="post" action="/autenticar">
+                        <label>Login</label>
+                        <input type="text" placeholder="E-mail" name="email">
+                        <input type="password" placeholder="Senha" name="senha">
+                        <input type="submit" value="Entrar" >
+                    </form>
+                </li>
+                <li><a href="/register">Register</a></li>
+            </ul>
+            <% if (validacao.length > 0) { %>
+                <div>
+                    <h3><strong>Ooppsss</strong></h3>
+                    <% for (let i = 0, len = validacao.length; i < len; i++) {%>
+                        <li>validacao[i].msg</li>
+                    <% } %>
+                </div>
+            <% } %>
+        </section>
+    </nav>
+</body>
+
+</html>

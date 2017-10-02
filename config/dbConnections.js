@@ -1,7 +1,7 @@
 var mongo = require('mongodb');
 
 var connMongoDb = function(){
-    console.log('Server ON');
+    console.log('Database access... OK');
 
     var db = new mongo.Db(
         'cadastro_de_usuarios',
