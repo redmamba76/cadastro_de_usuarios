@@ -5,5 +5,5 @@ module.exports.cadastro = function (application, req, res) {
 module.exports.cadastrar = function (application, req, res) {
     let dadosForm = req.body;
 
-    req.assert();
+    req.assert('nome','O campo nome está vazio').notEmpty();
 }
