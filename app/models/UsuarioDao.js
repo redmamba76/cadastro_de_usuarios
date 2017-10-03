@@ -2,7 +2,7 @@ var crypto = require('crypto');
 
 function UsuarioDao(connection) {
     this._connection = connection();
-}
+};
 
 UsuarioDao.prototype.adicionarUsuario = function (usuario) {
     this._connection.open(function (error, mongoclient) {
@@ -11,7 +11,7 @@ UsuarioDao.prototype.adicionarUsuario = function (usuario) {
             collection.close();
         });
     });
-}
+};
 
 UsuarioDao.prototype.verificaUsuario = function (usuario, req, res) {
     if (usuario == undefined) return res.usrError = {
@@ -30,7 +30,7 @@ UsuarioDao.prototype.verificaUsuario = function (usuario, req, res) {
         return res.userExists = true;;
     }
     this.adicionarUsuario(usuario);
-}
+};
 
 UsuarioDao.prototype.atualizaUsuario = function (usuario, req, res) {
     if (usuario == undefined) return res.usrError = {
@@ -44,7 +44,7 @@ UsuarioDao.prototype.atualizaUsuario = function (usuario, req, res) {
             mongoclient.close();
         });
     });
-}
+};
 
 UsuarioDao.prototype.autenticar = function (usuario, req, res) {
     this._connection.open(function (error, mongoclient) {
@@ -53,9 +53,19 @@ UsuarioDao.prototype.autenticar = function (usuario, req, res) {
             usuario.senha = senhaCriptografada;
             collection.findOne(usuario).toArray(function (error, result) {
                 if (result[0] != undefined) {
-                    
+                    req.session.autorizado = true;
+                    req.session.usuario = result[0].usuario;
+                }
+                if (req.session.autorizado) {
+                    res.redirect('home');
+                } else {
+
                 }
             });
         });
     });
+};
+
+module.exports = function(){
+    return UsuarioDao;
 }

@@ -1,6 +1,6 @@
 var mongo = require('mongodb');
 
-var connMongoDb = function(){
+var connMongoDb = function () {
     console.log('Database access... OK');
 
     var db = new mongo.Db(
@@ -15,6 +15,6 @@ var connMongoDb = function(){
     return db;
 }
 
-module.exports = function(){
+module.exports = function () {
     return connMongoDb;
 }

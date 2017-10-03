@@ -24,5 +24,8 @@
   "bugs": {
     "url": "https://github.com/redmamba76/cadastro_de_usuarios/issues"
   },
-  "homepage": "https://github.com/redmamba76/cadastro_de_usuarios#readme"
+  "homepage": "https://github.com/redmamba76/cadastro_de_usuarios#readme",
+  "devDependencies": {
+    "@angular/cli": "^1.4.4"
+  }
 }

@@ -1,19 +1,22 @@
-module.exports.index = function (app, req, res) {
+module.exports.index = function (application, req, res) {
     res.render('index', { validacao: {} });
 }
 
-module.exports.autenticar = function () {
+module.exports.autenticar = function (application, req, res) {
     let dadosForm = req.body;
 
-    req.assert('email', 'Oops, você esquece o <strong>email</strong>').notEmpty();
-    req.assert('senha', 'Oops, você esquece a <strong>senha</strong>').notEmpty();
+    req.assert('email', 'Oops, você esquece o email').notEmpty();
+    req.assert('senha', 'Oops, você esquece a senha').notEmpty();
 
     let errors = req.validationErrors();
 
-    if (errors) return res.render('index', { validacao: errors });
+    if (errors) {
+        res.render('index', { validacao: errors });
+        return;
+    }
 
-    let connection = app.config.dbConnection;
-    let UsuarioDao = new app.app.models.UsuarioDao(connection);
+    let connection = application.config.dbConnection;
+    var usuarioDao = new application.app.models.UsuarioDao(connection);
 
     UsuarioDao.autenticar(dadosForm, req, res);
 }
