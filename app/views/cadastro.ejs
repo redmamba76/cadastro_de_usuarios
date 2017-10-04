@@ -4,43 +4,83 @@
 <head>
     <meta charset="utf-8">
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     <!-- jQuery library -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <!-- Latest compiled JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
+    <!-- Angula -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+    <!-- Font Awesome -->
+    <script src="https://use.fontawesome.com/9482aa567b.js"></script>
+    <style>
+        .span-input{
+            width: 41px;
+        }
+    </style>
 </head>
 
-<body>
-    <section>
-        <div>
-            <h1>Cadastre-se e preparesse para um novo jeito de cadastrar seus usuários!</h1>
-            <form >
-                <label>Nome</label>
-                <input type="text" name="nome">
-                <label>Sobrenome</label>
-                <input type="text" name="sobrenome">
-                <label>email</label>
-                <input type="email" name="email">
-                <label>Senha</label>
-                <input type="password" name="senha">
-                <label>Confirme a senha</label>
-                <input type="password" name="confirmacao_senha">
-                <br />
-                <button onclick="location.href='/cadastrar'">Enviar</button>
-            </form>
-
-            <% if(validacao > 0) { %>
-                <div class="alert alert-danger">
-                    <ul>
-                        <% for(var i = 0, len = validacao.length; i < len ; i++) { %>
-                            <li><%= validacao[i].msg%></li>
-                        <% } %>
-                    </ul>
-                </div>
-            <% } %>
+<body ng-app="cadastro">
+    <section class="container">
+        <div class="row">
+            <div class="col col-md-10">
+                <h1 class="h1">Cadastre-se e preparesse para um novo jeito de cadastrar seus usuários!</h1>
+            </div>
         </div>
+        <div class="d-flex flex-row p-2">
+            <div class="col col-md-4">
+                
+                <form ng-submit="enviarFormulario()" name="formContact">
+                    <div class="input-group ">
+                        <span class="input-group-addon span-input"><i class="fa fa-user" aria-hidden="true"></i></span>
+                        <input id="inpt-name" class="form-control" type="text" name="nome" placeholder="Nome" ng-model="cadastro.nome" ng-require="true">
+                    </div>
+                    <div class="input-group ">
+                        <span class="input-group-addon span-input"><i class="fa fa-users" aria-hidden="true"></i></span>
+                        <input id="inpt-sobrenome" class="form-control" type="text" name="sobrenome" placeholder="Sobrenome" ng-model="cadastro.sobrenome" ng-require="true">
+                    </div>
+                    <div class="input-group ">
+                        <span class="input-group-addon span-input"><i class="fa fa-envelope" aria-hidden="true"></i></span>
+                        <input id="inpt-email" class="form-control" type="email" name="email" placeholder="E-mail" ng-model="cadastro.email" ng-require="true">
+                    </div>
+                    <div class="input-group ">
+                        <span class="input-group-addon span-input"><i class="fa fa-unlock-alt" aria-hidden="true"></i></span>
+                        <input id="inpt-senha" class="form-control" type="password" name="senha" placeholder="Senha" ng-model="cadastro.senha" ng-require="true">
+                    </div>
+                    <div class="input-group ">
+                        <span class="input-group-addon span-input"><i class="fa fa-lock" aria-hidden="true"></i></span>
+                        <input id="inpt-rsenha" class="form-control" type="password" name="confirmacao_senha" placeholder="Confirme a senha"  ng-model="cadastro.rsenha" ng-require="true">
+                    </div>
+                    <br/>
+                    <div class="d-flex justify-content-end">
+                        <div>
+                            <button type="submit" class="btn btn-primary">Enviar</button>
+                        </div>
+                    </div>
+                </form>
+
+                <% if(validacao > 0) { %>
+                    <div class="alert alert-danger">
+                        <ul>
+                            <% for(var i = 0, len = validacao.length; i < len ; i++) { %>
+                                <li><%= validacao[i].msg%></li>
+                            <% } %>
+                        </ul>
+                    </div>
+                <% } %>
+            </div>
+        
+            
+            <div class="col col-md-8">
+                <div ng-show="formContact.nome.$error.require && cadastro.nome.$dirty" class="alert alert-danger">
+                    Ooopsss, nome precisa ser preenchido!
+                </div>
+            </div>
+            
+
+        </div>
+
+
     </section>
 </body>
    

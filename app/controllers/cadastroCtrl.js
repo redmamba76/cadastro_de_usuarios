@@ -16,7 +16,7 @@ module.exports.cadastrar = function (application, req, res) {
 
     if (errors) {
         console.log('entrou no if');
-        res.render('cadastro', { validacao: errors });
+        res.render("cadastro", { validacao: errors });
         return;
     }
 
