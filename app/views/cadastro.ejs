@@ -3,6 +3,12 @@
 
 <head>
     <meta charset="utf-8">
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 </head>
 
@@ -10,7 +16,7 @@
     <section>
         <div>
             <h1>Cadastre-se e preparesse para um novo jeito de cadastrar seus usuários!</h1>
-            <form method="post" action="/cadastrar">
+            <form >
                 <label>Nome</label>
                 <input type="text" name="nome">
                 <label>Sobrenome</label>
@@ -22,11 +28,20 @@
                 <label>Confirme a senha</label>
                 <input type="password" name="confirmacao_senha">
                 <br />
-                <input type="submit" name="submit" value="Enviar">
+                <button onclick="location.href='/cadastrar'">Enviar</button>
             </form>
+
+            <% if(validacao > 0) { %>
+                <div class="alert alert-danger">
+                    <ul>
+                        <% for(var i = 0, len = validacao.length; i < len ; i++) { %>
+                            <li><%= validacao[i].msg%></li>
+                        <% } %>
+                    </ul>
+                </div>
+            <% } %>
         </div>
     </section>
-    <script src="jquery-3.2.1.min.js"></script>
 </body>
-
+   
 </html>

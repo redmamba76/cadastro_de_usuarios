@@ -14,9 +14,9 @@ UsuarioDao.prototype.adicionarUsuario = function (usuario) {
 };
 
 UsuarioDao.prototype.verificaUsuario = function (usuario, req, res) {
-    if (usuario == undefined) return res.usrError = {
-        error: "Houve um problema de comunicação tente novalmente"
-    };
+    if (!usuario) {
+        res.render('cadastro?msg=error_missing_usr');
+    }
     let email = this._connection.open(function (error, mongoclient) {
         mongoclient.collection("usuarios", function (error, collection) {
             collection.findOne({
@@ -25,9 +25,9 @@ UsuarioDao.prototype.verificaUsuario = function (usuario, req, res) {
             mongoclient.close();
         });
     });
-
     if (email) {
-        return res.userExists = true;;
+        res.render('cadastro?msg=user_exists');
+        return;
     }
     this.adicionarUsuario(usuario);
 };
@@ -66,6 +66,6 @@ UsuarioDao.prototype.autenticar = function (usuario, req, res) {
     });
 };
 
-module.exports = function(){
+module.exports = function () {
     return UsuarioDao;
 }
